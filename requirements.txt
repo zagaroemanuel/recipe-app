@@ -1,0 +1,7 @@
+flask
+gunicorn
+flask-sqlalchemy
+flask-admin
+psycopg2-binary
+boto3
+python-dotenv
