@@ -1,0 +1,35 @@
+<!-- templates/recipe.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow">
+        <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.name }}">
+        <div class="card-body">
+            <h1 class="display-4">{{ recipe.name }}</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Details</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">Price: {{ recipe.price }}</li>
+                        <li class="list-group-item">Servings: {{ recipe.servings }}</li>
+                        <li class="list-group-item">Prep Time: {{ recipe.prep_time }}</li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <h3>Ingredients</h3>
+                    <pre>{{ recipe.ingredients }}</pre>
+                    
+                    <h3>Instructions</h3>
+                    <div>{{ recipe.instructions|safe }}</div>
+                </div>
+            </div>
+            
+            <div class="mt-4 print-only">
+                <h3>Nutritional Information</h3>
+                <p>{{ recipe.nutritional_info }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero bg-dark text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 mb-3">Authentic Tanzanian Cuisine</h1>
+        <a href="#order" class="btn btn-warning btn-lg">Order via WhatsApp</a>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="category-scroll mb-4">
+        {% for category in categories %}
+        <button class="btn btn-outline-secondary rounded-pill mx-1 category-filter" 
+                data-category="{{ category }}">
+            {{ category }}
+        </button>
+        {% endfor %}
+    </div>
+
+    <div class="row g-4 recipe-grid">
+        {% for recipe in recipes %}
+        <div class="col-md-4" data-category="{{ recipe.category }}">
+            <div class="card h-100 shadow">
+                <img src="{{ recipe.image_url }}" class="card-img-top" alt="{{ recipe.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.name }}</h5>
+                    <p class="text-success fw-bold">{{ recipe.price }}</p>
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('recipe_detail', id=recipe.id) }}" 
+                           class="btn btn-primary">View Recipe</a>
+                        <a href="{{ whatsapp_order_link(recipe.name) }}" 
+                           class="btn btn-success">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
